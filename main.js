@@ -27,7 +27,72 @@ let BOOK2 = "book3";
 let BOOK3 = "book4";
 var cameraFar = 5;
 var theModel;
+var activeOption = WALL;
+const Textures = [
+  "images/carpet.jpg",
+  "images/cushion1.jpg",
+  "images/cushion2.jpg",
+  "images/floor1.jpg",
+  "images/wood.jpg",
+  "images/wood1.jpg",
+  "images/wallpaper.jpg",
+  "images/sofabase.jpg",
+];
+const TRAY = document.getElementById("js-tray-slide");
+Textures.forEach((el) => {
+  let img = document.createElement("img");
+  img.classList.add("tray__swatch");
+  img.setAttribute("data-key", el);
+  img.src = el;
+  // img.width = 30;
+  // img.height = 30;
+  TRAY.append(img);
+  // document.querySelector(".tray").appendChild(img);
+});
+const swatches = document.querySelectorAll(".tray__swatch");
 
+for (const swatch of swatches) {
+  swatch.addEventListener("click", selectSwatch);
+}
+
+const options = document.querySelectorAll(".option");
+
+for (const option of options) {
+  option.addEventListener("click", selectOption);
+}
+
+function selectOption(e) {
+  let option = e.target;
+  activeOption = e.target.dataset.option;
+  for (const otherOption of options) {
+    otherOption.classList.remove("--is-active");
+  }
+  option.classList.add("--is-active");
+}
+
+function selectSwatch(e) {
+  let src = e.target.dataset.key;
+  let txt = new THREE.TextureLoader();
+  txt.load(src, (tx) => {
+    tx.wrapS = THREE.RepeatWrapping;
+    tx.wrapT = THREE.RepeatWrapping;
+    tx.offset.set(0, 0);
+    tx.repeat.set(2, 2);
+    let mat = new THREE.MeshPhongMaterial({
+      map: tx,
+      wireframe: false,
+    });
+    theModel.traverse((o) => {
+      if (o.isMesh) {
+        if (o.name == activeOption) {
+          o.material = mat;
+        }
+      }
+    });
+  });
+
+  // setMaterial(theModel, 'legs', new_mtl);
+}
 const MODEL_PATH = "models/apartment-living-room.glb";
 
 const BACKGROUND_COLOR = 0xf1f1f1;
@@ -54,6 +119,7 @@ var camera = new THREE.PerspectiveCamera(
   0.1,
   1000
 );
+
 camera.position.x = -4.996153015531584;
 camera.position.y = 3.7629385203658257;
 camera.position.z = -5.774806626538174;
