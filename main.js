@@ -1,5 +1,6 @@
 let WALL = "Object62";
 let FLOOR = "Plane003";
+let FLOOR_EDGE = "Shape1";
 let SOFA_DECK = "Line001";
 let SOFA_B_L = "Line002";
 let SOFA_B_R = "Line003";
@@ -15,6 +16,15 @@ let CHAIR1 = "Box011002";
 let CHAIR_Pillow = "Box023";
 let CARPET = "Box021";
 let TAbLE_TOP = "Object063";
+let DECOR = "decoration_set_085";
+let DECOR1 = "decoration_set_082";
+let DECOR2 = "decoration_set_083";
+let DECOR3 = "decoration_set_084";
+let DECOR4 = "decoration_set_081";
+let VAS = "decoration_set_002";
+let BOOK1 = "book2";
+let BOOK2 = "book3";
+let BOOK3 = "book4";
 var cameraFar = 5;
 var theModel;
 
@@ -71,13 +81,15 @@ loader.load(
     theModel.scale.set(2, 2, 2);
 
     new_mtl = new THREE.MeshPhongMaterial({
-      color: parseInt("0xff0000"),
+      color: parseInt("0x673ab7"),
     });
 
     theModel.traverse((o) => {
       if (o.isMesh) {
-        console.log(o);
         o.material = INITIAL_MTL;
+        if (o.name == VAS) {
+          o.material = new_mtl;
+        }
         o.castShadow = true;
         o.receiveShadow = true;
       }
@@ -100,12 +112,14 @@ loader.load(
 function loadMaterials() {
   let mats = [
     [FLOOR, "images/floor1.jpg"],
+    [FLOOR_EDGE, "images/wood.jpg"],
     [SOFA_DECK, "images/sofabase.jpg"],
     [CHAIR1, "images/sofabase.jpg"],
     [SOFA_BASE_L, "images/cushion1.jpg"],
     [SOFA_BASE_R, "images/cushion1.jpg"],
     [SOFA_REST_R, "images/cushion1.jpg"],
     [SOFA_REST_L, "images/cushion1.jpg"],
+
     [SOFA_B_R, "images/cushion1.jpg"],
     [SOFA_B_L, "images/cushion1.jpg"],
     [CHAIR2, "images/cushion1.jpg"],
@@ -116,6 +130,14 @@ function loadMaterials() {
     [WALL, "images/wood1.jpg"],
     [CARPET, "images/carpet.jpg"],
     [TAbLE_TOP, "images/wood.jpg"],
+    [DECOR, "images/wood.jpg"],
+    [DECOR1, "images/cushion1.jpg"],
+    [DECOR2, "images/cushion1.jpg"],
+    [DECOR3, "images/cushion1.jpg"],
+    [DECOR4, "images/cushion1.jpg"],
+    // [BOOK1, "images/cushion2.jpg"],
+    // [BOOK3, "images/cushion1.jpg"],
+    // [BOOK2, "images/cushion2.jpg"],
   ];
 
   mats.forEach((el) => {
@@ -146,7 +168,7 @@ hemiLight.position.set(0, 50, 0);
 // Add hemisphere light to scene
 scene.add(hemiLight);
 
-var dirLight = new THREE.DirectionalLight(0xffffff, 0.54);
+var dirLight = new THREE.DirectionalLight(0xffffff, 0.84);
 dirLight.position.set(-0.527, 0.574, -2.405);
 dirLight.castShadow = true;
 dirLight.shadow.mapSize = new THREE.Vector2(1024, 1024);
