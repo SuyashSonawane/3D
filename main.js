@@ -8,8 +8,13 @@ let SOFA_REST_R = "Box007";
 let SOFA_BASE_R = "Box006";
 let SOFA_BASE_L = "Box002";
 let SOFA_CUSHION_R = "Box022";
-let SOFA_CUSHION_L_1 = "Box012.001";
-let SOFA_CUSHION_L_2 = "Box012";
+let SOFA_CUSHION_L_1 = "Box012001";
+let SOFA_CUSHION_L_2 = "Box013";
+let CHAIR2 = "Box012";
+let CHAIR1 = "Box011002";
+let CHAIR_Pillow = "Box023";
+let CARPET = "Box021";
+let TAbLE_TOP = "Object063";
 var cameraFar = 5;
 var theModel;
 
@@ -71,10 +76,8 @@ loader.load(
 
     theModel.traverse((o) => {
       if (o.isMesh) {
+        console.log(o);
         o.material = INITIAL_MTL;
-        if (o.name == WALL) {
-          o.material = new_mtl;
-        }
         o.castShadow = true;
         o.receiveShadow = true;
       }
@@ -98,17 +101,30 @@ function loadMaterials() {
   let mats = [
     [FLOOR, "images/floor1.jpg"],
     [SOFA_DECK, "images/sofabase.jpg"],
-    [SOFA_BASE_L, "images/cushion.jpg"],
-    [SOFA_BASE_R, "images/cushion.jpg"],
-    [SOFA_REST_R, "images/cushion.jpg"],
-    [SOFA_REST_L, "images/cushion.jpg"],
-    [SOFA_B_R, "images/cushion.jpg"],
-    [SOFA_B_L, "images/cushion.jpg"],
+    [CHAIR1, "images/sofabase.jpg"],
+    [SOFA_BASE_L, "images/cushion1.jpg"],
+    [SOFA_BASE_R, "images/cushion1.jpg"],
+    [SOFA_REST_R, "images/cushion1.jpg"],
+    [SOFA_REST_L, "images/cushion1.jpg"],
+    [SOFA_B_R, "images/cushion1.jpg"],
+    [SOFA_B_L, "images/cushion1.jpg"],
+    [CHAIR2, "images/cushion1.jpg"],
+    [SOFA_CUSHION_R, "images/cushion2.jpg"],
+    [SOFA_CUSHION_L_1, "images/cushion2.jpg"],
+    [SOFA_CUSHION_L_2, "images/cushion2.jpg"],
+    [CHAIR_Pillow, "images/cushion2.jpg"],
+    [WALL, "images/wood1.jpg"],
+    [CARPET, "images/carpet.jpg"],
+    [TAbLE_TOP, "images/wood.jpg"],
   ];
 
   mats.forEach((el) => {
     let txt = new THREE.TextureLoader();
     txt.load(el[1], (tx) => {
+      tx.wrapS = THREE.RepeatWrapping;
+      tx.wrapT = THREE.RepeatWrapping;
+      tx.offset.set(0, 0);
+      tx.repeat.set(2, 2);
       let mat = new THREE.MeshPhongMaterial({
         map: tx,
         wireframe: false,
