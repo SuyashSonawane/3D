@@ -3,6 +3,8 @@ let FLOOR = "Plane003";
 let SOFA_DECK = "Line001";
 let SOFA_B_L = "Line002";
 let SOFA_B_R = "Line003";
+let SOFA_REST_L = "Box005";
+let SOFA_REST_R = "Box007";
 let SOFA_BASE_R = "Box006";
 let SOFA_BASE_L = "Box002";
 let SOFA_CUSHION_R = "Box022";
@@ -96,6 +98,12 @@ function loadMaterials() {
   let mats = [
     [FLOOR, "images/floor1.jpg"],
     [SOFA_DECK, "images/sofabase.jpg"],
+    [SOFA_BASE_L, "images/cushion.jpg"],
+    [SOFA_BASE_R, "images/cushion.jpg"],
+    [SOFA_REST_R, "images/cushion.jpg"],
+    [SOFA_REST_L, "images/cushion.jpg"],
+    [SOFA_B_R, "images/cushion.jpg"],
+    [SOFA_B_L, "images/cushion.jpg"],
   ];
 
   mats.forEach((el) => {
