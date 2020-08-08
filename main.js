@@ -1,3 +1,13 @@
+let WALL = "Object62";
+let FLOOR = "Plane003";
+let SOFA_DECK = "Line001";
+let SOFA_B_L = "Line002";
+let SOFA_B_R = "Line003";
+let SOFA_BASE_R = "Box006";
+let SOFA_BASE_L = "Box002";
+let SOFA_CUSHION_R = "Box022";
+let SOFA_CUSHION_L_1 = "Box012.001";
+let SOFA_CUSHION_L_2 = "Box012";
 var cameraFar = 5;
 var theModel;
 
@@ -53,24 +63,58 @@ loader.load(
     // Set the models initial scale
     theModel.scale.set(2, 2, 2);
 
-    // Offset the y position a bit
-    // theModel.position.y = -1;
+    new_mtl = new THREE.MeshPhongMaterial({
+      color: parseInt("0xff0000"),
+    });
 
-    // Add the model to the scene
     theModel.traverse((o) => {
       if (o.isMesh) {
         o.material = INITIAL_MTL;
+        if (o.name == WALL) {
+          o.material = new_mtl;
+        }
         o.castShadow = true;
         o.receiveShadow = true;
       }
     });
     scene.add(theModel);
+
+    loadMaterials();
+
+    // Offset the y position a bit
+    // theModel.position.y = -1;
+
+    // Add the model to the scene
   },
   undefined,
   function (error) {
     console.error(error);
   }
 );
+
+function loadMaterials() {
+  let mats = [
+    [FLOOR, "images/floor1.jpg"],
+    [SOFA_DECK, "images/sofabase.jpg"],
+  ];
+
+  mats.forEach((el) => {
+    let txt = new THREE.TextureLoader();
+    txt.load(el[1], (tx) => {
+      let mat = new THREE.MeshPhongMaterial({
+        map: tx,
+        wireframe: false,
+      });
+      theModel.traverse((o) => {
+        if (o.isMesh) {
+          if (o.name == el[0]) {
+            o.material = mat;
+          }
+        }
+      });
+    });
+  });
+}
 
 // Add lights
 var hemiLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.61);
@@ -102,7 +146,7 @@ var controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.maxPolarAngle = Math.PI / 2;
 controls.minPolarAngle = Math.PI / 3;
 controls.enableDamping = true;
-controls.enablePan = false;
+// controls.enablePan = false;
 controls.dampingFactor = 0.1;
 controls.autoRotate = false; // Toggle this if you'd like the chair to automatically rotate
 controls.autoRotateSpeed = 0.2; // 30
