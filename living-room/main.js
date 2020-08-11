@@ -100,7 +100,7 @@ const BACKGROUND_COLOR = 0xf1f1f1;
 const scene = new THREE.Scene();
 // Set background
 scene.background = new THREE.Color(BACKGROUND_COLOR);
-// scene.fog = new THREE.Fog(BACKGROUND_COLOR, 20, 100);
+scene.fog = new THREE.Fog(BACKGROUND_COLOR, 20, 100);
 
 const canvas = document.querySelector("#c");
 
