@@ -397,7 +397,7 @@ function loadMaterials() {
     [PILLOW2, "images/cushion2.jpg"],
     [PILLOW1, "images/cushion2.jpg"],
     [BED, "images/cushion1.jpg"],
-    [DECOR4, "images/cushion1.jpg"],
+    [LEFTWALL, "images/cushion1.jpg"],
     // [BOOK1, "images/cushion2.jpg"],
     // [BOOK3, "images/cushion1.jpg"],
     // [BOOK2, "images/cushion2.jpg"],
