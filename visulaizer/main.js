@@ -38,6 +38,7 @@ function loadImages() {
 
 function imgClicked(e) {
   let option = e.target.dataset.option;
+  overlay.style.display = "flex";
   if (option.includes("wall")) {
     wall = loadImage(`images/${option}.png`, () => {
       overlay.style.display = "none";
