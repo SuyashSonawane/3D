@@ -16,6 +16,7 @@ function setup() {
   if (windowHeight < 600) createCanvas(1024, 600);
   else createCanvas(windowWidth, windowWidth * 0.5);
   frameRate(5);
+  pixelDensity(3.0);
   loadImages();
   overlay.style.display = "none";
 }
