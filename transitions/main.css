@@ -1,0 +1,47 @@
+html {
+  overflow: hidden;
+  font-family: "ABeeZee";
+  font-size: 22px;
+}
+
+.backDoor {
+  background-color: transparent;
+  position: absolute;
+  width: 200px;
+  height: 300px;
+  top: 50px;
+  /* 
+  margin: 0 auto;
+  margin-top: 50px; */
+  transform: translateX(-100vw);
+  transition: all 0.2s ease;
+}
+.backDoor .text {
+  text-align: center;
+}
+.door {
+  background-color: brown;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 200px;
+  height: 300px;
+
+  transform-origin: left;
+  /*Speed of the Door animation*/
+  transition: all 0.5s ease-in-out;
+}
+
+.doorOpen {
+  /*prespectiv creates the door open effect*/
+  transform: perspective(1200px) translateZ(0px) translateX(0px) translateY(0px)
+    rotateY(-105deg);
+}
+
+body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
