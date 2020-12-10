@@ -254,7 +254,7 @@ function resizeRendererToDisplaySize(renderer) {
   }
   return needResize;
 }
-var controls = new THREE.OrbitControls(camera, renderer.domElement);
+var controls = new OrbitControls(camera, renderer.domElement);
 controls.maxPolarAngle = Math.PI / 2;
 controls.minPolarAngle = Math.PI / 3;
 controls.enableDamping = true;

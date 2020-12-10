@@ -1,55 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
 
-    <!-- Imporant meta information to make the page as rigid as possible on mobiles, to avoid unintentional zooming on the page itself  -->
-    <meta
-      name="viewport"
-      content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
+<head>
+  <meta charset="UTF-8" />
 
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>3D</title>
-    <link
-      href="https://fonts.googleapis.com/css?family=Raleway:500,700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="main.css" />
-  </head>
-  <body>
-    <div class="options">
-      <div class="option --is-active" data-option="Plane_1">
-        <p>BACK WALL</p>
-      </div>
-      <div class="option" data-option="Plane_2">
-        <p>LEFT WALL</p>
-      </div>
-      <div class="option" data-option="Plane_0">
-        <p>FRONT WALL</p>
-      </div>
-      <div class="option" data-option="Plane_3">
-        <p>Floor</p>
-      </div>
-      <div class="option" data-option="Cube005">
-        <p>Floor Edge</p>
-      </div>
+  <!-- Imporant meta information to make the page as rigid as possible on mobiles, to avoid unintentional zooming on the page itself  -->
+  <meta name="viewport"
+    content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>3D</title>
+  <link href="https://fonts.googleapis.com/css?family=Raleway:500,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="main.css" />
+</head>
+
+<body>
+  <div class="options">
+    <div class="option --is-active" data-option="Plane_1">
+      <p>BACK WALL</p>
     </div>
-    <canvas id="c"></canvas>
-    <div class="controls">
-      <div id="js-tray" class="tray">
-        <div id="js-tray-slide" class="tray__slide"></div>
-      </div>
+    <div class="option" data-option="Plane_2">
+      <p>LEFT WALL</p>
     </div>
-    <!-- The main three.js file -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/108/three.min.js"></script>
+    <div class="option" data-option="Plane_0">
+      <p>FRONT WALL</p>
+    </div>
+    <div class="option" data-option="Plane_3">
+      <p>Floor</p>
+    </div>
+    <div class="option" data-option="Cube005">
+      <p>Floor Edge</p>
+    </div>
+  </div>
+  <canvas id="c"></canvas>
+  <div class="controls">
+    <div id="js-tray" class="tray">
+      <div id="js-tray-slide" class="tray__slide"></div>
+    </div>
+  </div>
+  <!-- The main three.js file -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/108/three.min.js"></script>
 
-    <!-- This brings in the ability to load custom 3D objects in the .gltf file format. Blender allows the ability to export to this format out the box -->
-    <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r92/examples/js/loaders/GLTFLoader.js"></script>
+  <!-- This brings in the ability to load custom 3D objects in the .gltf file format. Blender allows the ability to export to this format out the box -->
+  <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r92/examples/js/loaders/GLTFLoader.js"></script>
 
-    <!-- This is a simple to use extension for three.js that activates all the rotating, dragging and zooming controls we need for both mouse and touch, there isn't a clear CDN for this that I can find -->
-    <script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
+  <!-- This is a simple to use extension for three.js that activates all the rotating, dragging and zooming controls we need for both mouse and touch, there isn't a clear CDN for this that I can find -->
+  <script src="../OrbitControls.js"></script>
 
-    <script src="main.js"></script>
-  </body>
+  <script src="main.js"></script>
+</body>
+
 </html>

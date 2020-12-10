@@ -15,7 +15,7 @@ function setup() {
     "https://images.unsplash.com/photo-1556911220-bff31c812dba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
   );
 
-  frameRate(2);
+  // frameRate(60);
 }
 
 let x = 0,
@@ -23,20 +23,21 @@ let x = 0,
 
 function draw() {
   background(220);
-  img.resize(resizer, resizer * 0.5);
+  img.resize(resizer, height);
   image(img, x, y);
   // filter(BLUR, BlurAmount);
 
-  if (isChanging && BlurAmount < 3) {
-    tint(255, 125);
+  if (isChanging && x < width / 2) {
+    // tint(255, 125);
     BlurAmount += 0.9;
-    resizer += 70;
-    x -= 35;
+    // resizer += 70;
+    x += 10;
   } else {
-    noTint();
-    resizer = resizer == width ? width : (resizer -= 70);
-    x = x == 0 ? 0 : (x += 35);
-    BlurAmount = BlurAmount == 0 ? 0 : (BlurAmount -= 0.9);
+    // noTint();
+    // resizer = resizer == width ? width : (resizer -= 70);
+    x = x == 0 ? 0 : (x -= 10);
+    console.log(x);
+    // BlurAmount = BlurAmount == 0 ? 0 : (BlurAmount -= 0.9);
 
     isChanging = false;
   }

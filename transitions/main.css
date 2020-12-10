@@ -2,6 +2,8 @@ html {
   overflow: hidden;
   font-family: "ABeeZee";
   font-size: 22px;
+  padding: 0;
+  margin: 0;
 }
 
 .backDoor {
@@ -10,6 +12,7 @@ html {
   width: 200px;
   height: 300px;
   top: 50px;
+  left: 10px;
   /* 
   margin: 0 auto;
   margin-top: 50px; */
